@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parking Side Today</title>
 
+<style>
+body {
+    margin: 0;
+    background: #f4f4f4;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+}
+
+h1 {
+    margin-top: 0;
+    color: #003366;
+}
+
+#date {
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+#message {
+    font-size: 34px;
+    font-weight: bold;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.odd {
+    background: #d4edda;
+    color: #155724;
+}
+
+.even {
+    background: #cce5ff;
+    color: #004085;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Today's Parking</h1>
+
+    <div id="date"></div>
+
+    <div id="message"></div>
+</div>
+
+<script>
+
+function updateMessage() {
+
+    const today = new Date();
+
+    document.getElementById("date").innerHTML =
+        today.toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        });
+
+    const day = today.getDate();
+
+    const message = document.getElementById("message");
+
+    if(day % 2 === 0){
+
+        message.innerHTML = "PARK ON THE<br>EVEN SIDE OF THE STREET";
+        message.className = "even";
+
+    } else {
+
+        message.innerHTML = "PARK ON THE<br>ODD SIDE OF THE STREET";
+        message.className = "odd";
+
+    }
+
+}
+
+updateMessage();
+
+setInterval(updateMessage,60000);
+
+</script>
+
+</body>
+</html>
