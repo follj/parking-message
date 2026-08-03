@@ -43,14 +43,16 @@ h1 {
     border-radius: 8px;
 }
 
+/* Odd = RED */
 .odd {
-    background: #d4edda;
-    color: #155724;
+    background: #dc3545;
+    color: white;
 }
 
+/* Even = GREEN */
 .even {
-    background: #cce5ff;
-    color: #004085;
+    background: #28a745;
+    color: white;
 }
 </style>
 </head>
@@ -66,12 +68,11 @@ h1 {
 </div>
 
 <script>
-
 function updateMessage() {
 
     const today = new Date();
 
-    document.getElementById("date").innerHTML =
+    document.getElementById("date").textContent =
         today.toLocaleDateString("en-US", {
             weekday: "long",
             month: "long",
@@ -80,27 +81,21 @@ function updateMessage() {
         });
 
     const day = today.getDate();
-
     const message = document.getElementById("message");
 
-    if(day % 2 === 0){
-
+    if (day % 2 === 0) {
         message.innerHTML = "PARK ON THE<br>EVEN SIDE OF THE STREET";
         message.className = "even";
-
     } else {
-
         message.innerHTML = "PARK ON THE<br>ODD SIDE OF THE STREET";
         message.className = "odd";
-
     }
-
 }
 
 updateMessage();
 
-setInterval(updateMessage,60000);
-
+// Check every minute in case the date changes while the page is open.
+setInterval(updateMessage, 60000);
 </script>
 
 </body>
